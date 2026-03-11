@@ -1661,7 +1661,7 @@ async function analyzeImg(){
       // Show raw response for debugging
       throw new Error("Raw: "+JSON.stringify(data).slice(0,200));
     }
-    const clean=text.replace(/```json|```/g,"").trim();
+  const clean=text.replace(/```json|```/g,"").replace(/\n/g," ").trim();
     scanResult=JSON.parse(clean);
     showScanResult(scanResult);
   }catch(err){
