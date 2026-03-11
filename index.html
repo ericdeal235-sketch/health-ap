@@ -1661,7 +1661,7 @@ async function analyzeImg(){
       // Show raw response for debugging
       throw new Error("Raw: "+JSON.stringify(data).slice(0,200));
     }
-  scanResult=JSON.parse(text.replace(/[\s\S]*?({[\s\S]*})/,"$1"));
+  try{scanResult=JSON.parse(text.match(/{[^{}]*}/s)[0]);}catch(e){throw new Error("Parse failed: "+text.slice(0,100));}
     
     showScanResult(scanResult);
   }catch(err){
